@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.urlresolvers import resolve
 import sys
-import urllib2
+import urllib.request
 import traceback
 from lxml import etree
 
@@ -47,8 +47,8 @@ class Client(object):
         }
 
         payload = self._generate_xml(exception=exception, request=request)
-        req = urllib2.Request(self.url, payload, headers)
-        resp = urllib2.urlopen(req, timeout=self.settings['TIMEOUT'])
+        req = urllib.request.Request(self.url, payload.encode('utf8'), headers)
+        resp = urllib.request.urlopen(req, timeout=self.settings['TIMEOUT'])
         status = resp.getcode()
 
         if status == 200:

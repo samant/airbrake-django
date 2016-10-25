@@ -2,10 +2,12 @@
 
 When I went to implement [Airbrake](http://airbrake.io) in [Sprint.ly](http://sprint.ly) I found two projects that looked like they might do the trick: [django-airbrake](https://bitbucket.org/greghball/django-airbrake), which was forked from the dormant [django-hoptoad](https://bitbucket.org/sjl/django-hoptoad/) and [Pytoad](https://github.com/attachmentsme/Pytoad) which wasn't made for Django. In the end, I decided to use bits and pieces of the two as the older `django-airbrake` wasn't working with the newer API and Pytoad didn't have any Django sugar.
 
+Just add python 3 support to this airbrake library.
+
 ### Install airbrake-django from github using pip
 
 ```sh
-pip install git+https://github.com/airbrake/airbrake-django.git
+pip install git+https://github.com/samant/airbrake-django.git
 ```
 
 ### Configure airbrake in your settings.py
@@ -24,11 +26,17 @@ Create the `AIRBRAKE` dictionary in your settings.py for project:
 ```python
 # Airbrake settings
 AIRBRAKE = {
+    'API_URL': 'YOUR_PROJECT_API_URL',
     'API_KEY': 'YOUR_PROJECT_API_KEY',
     'USE_SSL': True,
     'TIMEOUT': 5,
     'ENVIRONMENT': 'production',
 }
+```
+
+Add airbrake to your middleware:
+```python
+MIDDLEWARE_CLASSES = ['airbrake.middleware.AirbrakeNotifierMiddleware'] + MIDDLEWARE_CLASSES
 ```
 
 Then just restart your server!
