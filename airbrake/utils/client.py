@@ -119,4 +119,4 @@ class Client(object):
 
         etree.SubElement(env_em, 'environment-name').text = self.settings.get('ENVIRONMENT', 'development')
 
-        return '<?xml version="1.0" encoding="UTF-8"?>%s' % etree.tostring(notice_em)
+        return '<?xml version="1.0" encoding="UTF-8"?>%s' % etree.tostring(notice_em, encoding="unicode")
