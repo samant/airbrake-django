@@ -4,11 +4,11 @@ from six.moves import urllib
 import traceback
 from lxml import etree
 try:
-    # Django 2.0
-    from django.urls.base import resolve
+    # Django 2.0
+    from django.urls.base import resolve
 except:
-    # Django 1.0
-    from django.core.urlresolvers import resolve
+    # Django 1.0
+    from django.core.urlresolvers import resolve
 
 
 class Client(object):
